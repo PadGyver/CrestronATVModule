@@ -12,6 +12,15 @@ namespace AndroidTvLib
         private ushort _pendingKeyCode;
         private bool _pairingStarted;
 
+        // ===== Codes touches supplementaires (transport + numerique) =====
+        private const ushort KEYCODE_0 = 7;
+        private const ushort KEYCODE_MEDIA_PLAY_PAUSE = 85;
+        private const ushort KEYCODE_MEDIA_STOP = 86;
+        private const ushort KEYCODE_MEDIA_NEXT = 87;
+        private const ushort KEYCODE_MEDIA_PREVIOUS = 88;
+        private const ushort KEYCODE_MEDIA_REWIND = 89;
+        private const ushort KEYCODE_MEDIA_FAST_FORWARD = 90;
+
         // ===== DELEGATES (Sorties / Feedback vers SIMPL Windows) =====
         public delegate void BoolOutputSigDelegate(ushort value);
         public delegate void UShortOutputSigDelegate(ushort value);
@@ -67,6 +76,26 @@ namespace AndroidTvLib
         public void Left(ushort value) { if (value != 0) _cmdClient.SendKey(21); }
         public void Right(ushort value) { if (value != 0) _cmdClient.SendKey(22); }
         public void Select(ushort value) { if (value != 0) _cmdClient.SendKey(23); }
+
+        // ===== ENTREES (Digital-In) — Touches de transport =====
+        public void PlayPause(ushort value) { if (value != 0) _cmdClient.SendKey(KEYCODE_MEDIA_PLAY_PAUSE); }
+        public void Stop(ushort value) { if (value != 0) _cmdClient.SendKey(KEYCODE_MEDIA_STOP); }
+        public void Rewind(ushort value) { if (value != 0) _cmdClient.SendKey(KEYCODE_MEDIA_REWIND); }
+        public void FastForward(ushort value) { if (value != 0) _cmdClient.SendKey(KEYCODE_MEDIA_FAST_FORWARD); }
+        public void Next(ushort value) { if (value != 0) _cmdClient.SendKey(KEYCODE_MEDIA_NEXT); }
+        public void Previous(ushort value) { if (value != 0) _cmdClient.SendKey(KEYCODE_MEDIA_PREVIOUS); }
+
+        // ===== ENTREES (Digital-In) — Pave numerique =====
+        public void Digit0(ushort value) { if (value != 0) _cmdClient.SendKey(KEYCODE_0); }
+        public void Digit1(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 1)); }
+        public void Digit2(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 2)); }
+        public void Digit3(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 3)); }
+        public void Digit4(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 4)); }
+        public void Digit5(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 5)); }
+        public void Digit6(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 6)); }
+        public void Digit7(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 7)); }
+        public void Digit8(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 8)); }
+        public void Digit9(ushort value) { if (value != 0) _cmdClient.SendKey((ushort)(KEYCODE_0 + 9)); }
 
         // ===== ENTREES (Serial-In depuis SIMPL Windows) =====
         public void SetIpAddress(string value) { _ip = value; }
